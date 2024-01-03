@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "./_components/theme-provider";
 import { Header } from "./_components/header";
 import Footer from "./_components/footer";
+import { QRCodeGenProvider } from "@/context/qrcode-gen";
 
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 const fontHeading = localFont({
@@ -34,7 +35,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="light">
           <Header />
-          {children}
+          <QRCodeGenProvider>{children}</QRCodeGenProvider>
           <Footer />
         </ThemeProvider>
       </body>
