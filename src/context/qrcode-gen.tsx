@@ -1,4 +1,11 @@
 "use client";
+import {
+  QRCODE_INNER_EYES,
+  QRCODE_OUTER_EYES,
+  QRCODE_STYLES,
+  QRCodeEyes,
+  QRCodeStyle,
+} from "@/app/_components/qrcode-options";
 import { FACEBOOK_URL, TWITTER_URL } from "@/constants/qrcode";
 import { ReactNode, createContext, useContext, useState } from "react";
 
@@ -8,6 +15,20 @@ type QRCodeGenProviderProps = {
 
 type QRCodeContextData = {
   qrcodeContent: string | undefined;
+  qrStyle: QRCodeStyle;
+  outerEyeTopLeft: QRCodeEyes;
+  outerEyeBottomLeft: QRCodeEyes;
+  outerEyeTopRight: QRCodeEyes;
+  innerEyeTopLeft: QRCodeEyes;
+  innerEyeTopRight: QRCodeEyes;
+  innerEyeBottomLeft: QRCodeEyes;
+  changeQRStyle: (style: QRCodeStyle) => void;
+  changeQRInnerEyeTopRight: (key: string) => void;
+  changeQRInnerEyeTopLeft: (key: string) => void;
+  changeQRInnerEyeBottomLeft: (key: string) => void;
+  changeQROuterEyeTopLeft: (key: string) => void;
+  changeQROuterEyeBottomLeft: (key: string) => void;
+  changeQROuterEyeTopRight: (key: string) => void;
   cleanQRCode: () => void;
   generateUrlQRCode: (content: string) => void;
   generateTextQRCode: (content: string) => void;
@@ -54,6 +75,54 @@ export function QRCodeGenProvider({ children }: QRCodeGenProviderProps) {
   const [qrcodeContent, setQrcodeContent] = useState<string | undefined>(
     undefined,
   );
+
+  const [qrStyle, setQrStyle] = useState<QRCodeStyle>(QRCODE_STYLES[0].value);
+  const [outerEyeTopLeft, setOuterEyeTopLeft] = useState<QRCodeEyes>(
+    QRCODE_OUTER_EYES[0].value,
+  );
+  const [outerEyeBottomLeft, setOuterEyeBottomLeft] = useState<QRCodeEyes>(
+    QRCODE_OUTER_EYES[0].value,
+  );
+  const [outerEyeTopRight, setOuterEyeTopRight] = useState<QRCodeEyes>(
+    QRCODE_OUTER_EYES[0].value,
+  );
+  const [innerEyeTopLeft, setInnerEyeTopLeft] = useState<QRCodeEyes>(
+    QRCODE_INNER_EYES[0].value,
+  );
+  const [innerEyeTopRight, setInnerEyeTopRight] = useState<QRCodeEyes>(
+    QRCODE_INNER_EYES[0].value,
+  );
+  const [innerEyeBottomLeft, setInnerEyeBottomLeft] = useState<QRCodeEyes>(
+    QRCODE_INNER_EYES[0].value,
+  );
+
+  const changeQROuterEyeTopRight = (key: string) => {
+    setOuterEyeTopRight(QRCODE_OUTER_EYES[Number(key)].value);
+  };
+
+  const changeQROuterEyeTopLeft = (key: string) => {
+    setOuterEyeTopLeft(QRCODE_OUTER_EYES[Number(key)].value);
+  };
+
+  const changeQROuterEyeBottomLeft = (key: string) => {
+    setOuterEyeBottomLeft(QRCODE_OUTER_EYES[Number(key)].value);
+  };
+
+  const changeQRInnerEyeTopLeft = (key: string) => {
+    setInnerEyeTopLeft(QRCODE_INNER_EYES[Number(key)].value);
+  };
+
+  const changeQRInnerEyeTopRight = (key: string) => {
+    setInnerEyeTopRight(QRCODE_INNER_EYES[Number(key)].value);
+  };
+
+  const changeQRInnerEyeBottomLeft = (key: string) => {
+    setInnerEyeBottomLeft(QRCODE_INNER_EYES[Number(key)].value);
+  };
+
+  const changeQRStyle = (style: QRCodeStyle) => {
+    setQrStyle(style);
+  };
 
   const cleanQRCode = () => {
     setQrcodeContent(undefined);
@@ -136,6 +205,20 @@ export function QRCodeGenProvider({ children }: QRCodeGenProviderProps) {
     <QRCodeGenContext.Provider
       value={{
         qrcodeContent,
+        qrStyle,
+        innerEyeTopLeft,
+        innerEyeTopRight,
+        innerEyeBottomLeft,
+        outerEyeBottomLeft,
+        outerEyeTopLeft,
+        outerEyeTopRight,
+        changeQRInnerEyeTopLeft,
+        changeQRInnerEyeTopRight,
+        changeQRInnerEyeBottomLeft,
+        changeQROuterEyeTopLeft,
+        changeQROuterEyeBottomLeft,
+        changeQROuterEyeTopRight,
+        changeQRStyle,
         cleanQRCode,
         generateUrlQRCode,
         generateTextQRCode,
