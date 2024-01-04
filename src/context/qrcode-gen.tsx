@@ -126,6 +126,13 @@ export function QRCodeGenProvider({ children }: QRCodeGenProviderProps) {
 
   const cleanQRCode = () => {
     setQrcodeContent(undefined);
+    setQrStyle(QRCODE_STYLES[0].value);
+    setOuterEyeTopRight(QRCODE_OUTER_EYES[0].value);
+    setOuterEyeTopLeft(QRCODE_OUTER_EYES[0].value);
+    setOuterEyeBottomLeft(QRCODE_OUTER_EYES[0].value);
+    setInnerEyeTopLeft(QRCODE_INNER_EYES[0].value);
+    setInnerEyeTopRight(QRCODE_INNER_EYES[0].value);
+    setInnerEyeBottomLeft(QRCODE_INNER_EYES[0].value);
   };
 
   const generateQRCode = (content: string) => {
