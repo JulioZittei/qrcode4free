@@ -33,7 +33,7 @@ const formSchema = z.object({
 });
 
 function TextForm() {
-  const maxChars = 140;
+  const maxChars = 300;
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
